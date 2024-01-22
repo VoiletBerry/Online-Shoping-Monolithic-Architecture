@@ -1,4 +1,5 @@
 import { Application, NextFunction, Request, Response } from "express";
+import { CustomerService } from "../services/customer.service";
 
 export const Customer = (app: Application) => {
   const service = new CustomerService();
