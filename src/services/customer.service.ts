@@ -9,9 +9,9 @@ export class CustomerService {
     this.repository = new CustomerRepository();
   }
 
-  async SignUp(payload: { name: string; password: string }) {
+  async SignUp(payload: { email: string; phone: string; password: string }): Promise<any> {
     try {
-      this.repository.CreateCustomer();
+      return this.repository.CreateCustomer();
     } catch (error) {
       console.log(error);
     }
