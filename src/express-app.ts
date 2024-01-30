@@ -1,7 +1,7 @@
 import { Application } from "express";
 import express from "express";
 import cors from "cors";
-import { Customer } from "./api/customer";
+import { Customer } from "./api/customer.api";
 
 export const expressApp = async (app: Application) => {
   app.use(express.json());
