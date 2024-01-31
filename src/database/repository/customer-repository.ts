@@ -1,4 +1,5 @@
 import { CustomerSignup } from "../../dto/cutomer-dto";
+import { APIError, STATUS_CODES } from "../../utils/app-errors";
 import { Customer } from "../models/Customer.modal";
 
 // All Database Operation

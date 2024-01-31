@@ -1,4 +1,4 @@
-const STATUS_CODES = {
+export const STATUS_CODES = {
   OK: 200,
   BAD_REQUEST: 400,
   UN_AUTHORISED: 403,
@@ -6,7 +6,7 @@ const STATUS_CODES = {
   INTERNAL_ERROR: 500,
 };
 
-class AppError extends Error {
+export class AppError extends Error {
   public name: string;
   public statusCode: number;
   public isOperational: boolean;
@@ -25,7 +25,7 @@ class AppError extends Error {
   }
 }
 
-class APIError extends AppError {
+export class APIError extends AppError {
   public name: string;
   public statusCode: number;
   public isOperational: boolean;
@@ -41,13 +41,13 @@ class APIError extends AppError {
   }
 }
 
-class BadRequestError extends AppError {
+export class BadRequestError extends AppError {
   constructor(description = "Bad request", logingErrorResponse: any) {
     super("NOT FOUND", STATUS_CODES.BAD_REQUEST, description, true, false, logingErrorResponse);
   }
 }
 
-class ValidationError extends AppError {
+export class ValidationError extends AppError {
   constructor(description = "Validation Error", errorStack: any) {
     super("BAD REQUEST", STATUS_CODES.BAD_REQUEST, description, true, errorStack);
   }

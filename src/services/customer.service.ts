@@ -1,5 +1,6 @@
 import { CustomerRepository } from "../database/repository/customer-repository";
 import { CustomerSignup } from "../dto/cutomer-dto";
+import { APIError } from "../utils/app-errors";
 import { GeneratePassword, GenerateSalt } from "../utils/encrypt-data";
 
 // All Buisness Logic
