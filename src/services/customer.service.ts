@@ -18,13 +18,13 @@ export class CustomerService {
       const salt = await GenerateSalt();
       const hashedPassword = await GeneratePassword(password, salt);
 
-      const customer = await this.repository.CreateCustomer({ ...payload, password: hashedPassword , salt });
+      const customer = await this.repository.CreateCustomer({ ...payload, password: hashedPassword, salt });
 
       console.log("Customer value in Service :", customer);
 
       return customer;
     } catch (error: any) {
-      throw new Error(error);
+      throw new APIError("Data Not found", error);
     }
   }
 }

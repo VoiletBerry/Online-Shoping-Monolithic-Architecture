@@ -26,7 +26,7 @@ export class CustomerRepository {
 
       return customer;
     } catch (error) {
-      console.log(error);
+      throw new APIError("API Error", STATUS_CODES.INTERNAL_ERROR, "Unable to Create Customer");
     }
   }
 
