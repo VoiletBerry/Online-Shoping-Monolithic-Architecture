@@ -1,7 +1,7 @@
 import { Application, NextFunction, Request, Response } from "express";
 import { CustomerService } from "../services/customer.service";
 import { UserAuth } from "./middleware/auth";
-import { CustomerSignupSchema } from "../dto/cutomer-dto";
+import { CustomerLoginSchema, CustomerSignupSchema } from "../dto/cutomer-dto";
 
 export const Customer = (app: Application) => {
   const service = new CustomerService();
@@ -18,8 +18,6 @@ export const Customer = (app: Application) => {
 
       const data = await service.SignUp({ name, email, password, phone });
 
-      console.log("Customer value in Api :", data);
-
       return res.status(201).json(data);
     } catch (err) {
       next(err);
@@ -28,9 +26,13 @@ export const Customer = (app: Application) => {
 
   app.post("/customer/login", async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { email, password } = req.body;
+      const { error, value } = CustomerLoginSchema.validate(req.body, { abortEarly: false });
 
-      // const { data } = await service.SignIn({ email, password });
+      if (error) return res.status(400).json(error.details);
+
+      const { email, password } = value;
+
+      const { data } = await service.SignIn({ email, password });
 
       return res.json("");
     } catch (err) {

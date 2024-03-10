@@ -39,19 +39,6 @@ export const VerifySignature = async (req: Request) => {
   return false;
 };
 
-export const GenerateRandomPassword = () => {
-  const length = 8;
-  const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=<>?";
-  let password = "";
-
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * charset.length);
-    password += charset.charAt(randomIndex);
-  }
-
-  return password;
-};
-
 export const GenerateFiveDigitCode = () => {
   const min = 10000;
   const max = 99999;

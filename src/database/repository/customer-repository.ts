@@ -25,11 +25,13 @@ export class CustomerRepository {
         password,
       });
 
+      if (!customer) return false;
+
       return customer;
     } catch (error) {
       throw new APIError("API Error", STATUS_CODES.INTERNAL_ERROR, "Unable to Create Customer");
     }
   }
 
-  Login() {}
+  async Login() {}
 }

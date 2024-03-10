@@ -1,5 +1,5 @@
 import { CustomerRepository } from "../database/repository/customer-repository";
-import { CustomerSignup } from "../dto/cutomer-dto";
+import { CustomerLogin, CustomerSignup } from "../dto/cutomer-dto";
 import { APIError } from "../utils/app-errors";
 import { GeneratePassword, GenerateSalt } from "../utils/encrypt-data";
 
@@ -21,9 +21,20 @@ export class CustomerService {
 
       const customer = await this.repository.CreateCustomer({ ...payload, password: hashedPassword, salt });
 
-      console.log("Customer value in Service :", customer);
+      if (!customer) throw new Error("Customer Not Created");
 
       return customer;
+    } catch (error: any) {
+      throw new APIError("Data Not found", error);
+    }
+  }
+
+  async SignIn(payload: CustomerLogin): Promise<any> {
+    try {
+      const { email, password } = payload;
+
+      
+
     } catch (error: any) {
       throw new APIError("Data Not found", error);
     }
